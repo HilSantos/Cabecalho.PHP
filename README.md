@@ -68,12 +68,12 @@ Criação do cabeçalho.php com CSS
         display: inline-block;
         margin-left: 10px;
         font-size: 1rem;
-        color: #cc0000;
+        color: rgb(94, 8, 8);
         cursor: pointer;
     }
 
     h3:hover {
-        color: #990000;
+        color: rgb(94, 8, 8);
     }
 </style>
 <?php
