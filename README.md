@@ -96,9 +96,15 @@ if (!isset($_SESSION['nivel'])) {
         <a href="index.php"><h1>Minhas Aventuras</h1></a>
         <br>
         <p>
-            <?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!
+            <?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!</p>
+           <div class="dropdown" style="float:right;">
+  <button class="dropbtn"><?=$_SESSION['apelido']?></button>Right</button>
+  <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="alterasenha.php">Alterar Senha</a>
             <a href="logout.php"><h3>Sair</h3></a>
-        </p>
+  </div>
+    </div>
     </div>
     <?php
 } else if ($_SESSION['nivel'] == 10) {
@@ -113,6 +119,14 @@ if (!isset($_SESSION['nivel'])) {
         <p><?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!
             <a href="logout.php"><h3>Sair</h3></a>
         </p>
+       <div class="dropdown" style="float:right;">
+  <button class="dropbtn">Right</button>
+  <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="logout.php">Sair</a>
+  </div>
+</div>
     </div>
     <?php
 }
