@@ -31,6 +31,7 @@ Criação do cabeçalho.php com CSS
     h1 {
         color:rgb(70, 26, 105);
         font-size: 2rem;
+        text-decoration: none;
     }
 
     a {
@@ -68,7 +69,7 @@ Criação do cabeçalho.php com CSS
         display: inline-block;
         margin-left: 10px;
         font-size: 1rem;
-        color: rgb(94, 8, 8);
+        color:rgb(94, 8, 8);
         cursor: pointer;
     }
 
@@ -77,56 +78,68 @@ Criação do cabeçalho.php com CSS
     }
 </style>
 <?php
-
+// Verifica se o usuário está logado pela sessão 'nivel' //
 if (!isset($_SESSION['nivel'])) {
-    // usuário não logado
+    // Caso o usuário não esteja logado, exibe opções para login ou criação de conta //
     ?>
-  <div>
+   <div>
         <a href="index.php"><h1>Minhas Aventuras</h1></a>
         <br>
         <p>
             Faça seu <a href="login.php">Login</a>
-            ou crie a sua <a href="#">Conta</a>
+            ou crie a sua <a href="criaconta.php">Conta</a>
         </p>
     </div>
     <?php
 } else if ($_SESSION['nivel'] == 1) {
+    // Caso o usuário seja do tipo comum (nível 1) //
     ?>
     <div>
         <a href="index.php"><h1>Minhas Aventuras</h1></a>
         <br>
-        <p>
-            <?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!</p>
-           <div class="dropdown" style="float:right;">
-  <button class="dropbtn"><?=$_SESSION['apelido']?></button>Right</button>
-  <div class="dropdown-content">
-  <a href="#">Link 1</a>
-  <a href="alterasenha.php">Alterar Senha</a>
-            <a href="logout.php"><h3>Sair</h3></a>
-  </div>
-    </div>
+        <div class="cabecalho-direita">
+            <!-- Saudações ao usuário pelo apelido salvo na sessão -->
+            <p><?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!</p>
+
+            <!-- Menu dropdown com opções para o usuário comum -->
+   <div class="dropdown" style="float:right;">
+                <button class="dropbtn"><?= $_SESSION['apelido'] ?></button>
+                <div class="dropdown-content">
+                    <a href="carrinho.php">Ver Carrinho</a>
+                    <a href="alterasenha.php">Alterar Senha</a>
+                    <a href="logout.php">Sair</a>
+                </div>
+            </div>
+        </div>
     </div>
     <?php
 } else if ($_SESSION['nivel'] == 10) {
+    // Caso o usuário seja administrador (nível 10) //
     ?>
     <div>
         <a href="index.php"><h1>Minhas Aventuras</h1></a>
         <br>
-        <a href="cadastrausuario.php"><button>Cadastrar Usuário</button></a>
+
+        <!-- Botões para funcionalidades administrativas -->
+   <a href="cadastrausuario.php"><button>Cadastrar Usuário</button></a>
         <a href="listausuario.php"><button>Listar Usuários</button></a>
         <a href="cadastraproduto.php"><button>Cadastrar Produto</button></a>
         <a href="listaproduto.php"><button>Listar Produtos</button></a>
-        <p><?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!
+
+        <!-- Saudações ao administrador com opção de logout -->
+   <p><?= $_SESSION['apelido'] ?> Bem vindo ao meu negócio!
             <a href="logout.php"><h3>Sair</h3></a>
         </p>
-       <div class="dropdown" style="float:right;">
-  <button class="dropbtn">Right</button>
-  <div class="dropdown-content">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="logout.php">Sair</a>
-  </div>
-</div>
+
+        <!-- Menu dropdown do administrador -->
+   <div class="dropdown" style="float:right;">
+            <button class="dropbtn">Right</button>
+            <div class="dropdown-content">
+                <a href="carrinho.php">Ver Carrinho</a>
+                <a href="#">Link 2</a> <!-- Link adicional (talvez futuro recurso) -->
+                <a href="logout.php">Sair</a>
+            </div>
+        </div>
     </div>
     <?php
 }
